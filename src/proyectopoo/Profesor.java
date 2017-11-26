@@ -9,6 +9,6 @@ package proyectopoo;
  *
  * @author 123
  */
-public class clasePrueba {
+public class Profesor {
     
 }
