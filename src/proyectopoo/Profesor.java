@@ -4,11 +4,19 @@
  * and open the template in the editor.
  */
 package proyectopoo;
-
+import java.util.*;
 /**
  *
- * @author 123
+ * @Tonny
  */
-public class Profesor {
-    
+public class Profesor extends Mago  {
+    public Profesor(String nombre,String apellido,String casa,String varita,int edad,int agnio,int mes ,int dia){
+        super(nombre, apellido, casa, varita, edad);
+        GregorianCalendar fecha=new GregorianCalendar(agnio,mes-1,dia);
+        fechaCorrecta=fecha.getTime();
+    }
+    public Date damefecha(){
+        return fechaCorrecta;
+    }
+     private Date fechaCorrecta;
 }
