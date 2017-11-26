@@ -17,7 +17,7 @@ public class Normal extends Mago implements Volador {
     }
     @Override
     public void despegar(){ 
-        //Este método aún no tiene función específica
+        System.out.println("Has despegado");
     }
     @Override
     public void volar(){  //método sobreescrito sirve para informar al usuario los requisitos para volar
