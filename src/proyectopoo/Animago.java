@@ -17,6 +17,7 @@ public class Animago extends Mago implements Volador{ //Se heredan los atributos
         this.animal=animal;
         this.hechizo=hechizo;
     }
+
     @Override
     public void despegar(){ 
         System.out.println("Has despegado");
