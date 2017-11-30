@@ -40,4 +40,5 @@ public class Animago extends Mago implements Volador{ //Se heredan los atributos
     public void setHechizo(String hechizo){
         this.hechizo=hechizo;
     }
+   
 }

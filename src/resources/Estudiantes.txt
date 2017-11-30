@@ -1,0 +1,4 @@
+
+pepito,perez,3,cedro,gryfindor,M
+sd,sd,3,sd,sd,M
+r,re,2,er,er,M
