@@ -5,6 +5,8 @@
  */
 package proyectopoo;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Jhonston
@@ -12,9 +14,12 @@ package proyectopoo;
 public class Metamorfomago extends Mago implements Volador{
         private String pocion;
 
-    public Metamorfomago(String nombre, String apellido, String casa, String varita, int edad, String pocion) {
-        super(nombre, apellido, casa, varita, edad);
-        this.pocion=pocion;
+    public Metamorfomago(String nombre, String apellido, String casa, String varita, int edad,boolean esProfesor) {
+        super(nombre, apellido, casa, varita, edad,esProfesor);
+        Scanner sc=new Scanner(System.in);
+        System.out.println("¿Qué poción utiliza?: ");
+        pocion=sc.nextLine();
+        
     }
 
     @Override

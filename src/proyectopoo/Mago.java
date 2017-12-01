@@ -5,20 +5,28 @@
  */
 package proyectopoo;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Jhonston
  */
 public class Mago { //Clase padre de magos
-    private String nombre, apellido, casa, varita;
+    private String nombre, apellido, casa, varita,fechaIngreso;
+    private boolean esProfesor;
     private int edad;
     
-    public Mago(String nombre,String apellido,String casa,String varita,int edad){ //constructor de la clase padre
+    public Mago(String nombre,String apellido,String casa,String varita,int edad,boolean esProfesor){ //constructor de la clase padre
         this.nombre=nombre;
         this.apellido=apellido;
         this.casa=casa;
         this.varita=varita;
         this.edad=edad;
+        Scanner sc=new Scanner(System.in);
+        if(esProfesor==true){
+            System.out.println("Ingrese fecha de ingreso: ");
+            fechaIngreso=sc.nextLine();
+        }else fechaIngreso="Es estudiante";
     }
     //get y set necesarios de la clase 
     public String getNombre(){
@@ -36,6 +44,9 @@ public class Mago { //Clase padre de magos
     public int getEdad(){
         return edad;
     }
+    public String getFechaIngreso(){
+        return fechaIngreso;
+    }
     public void setNombre(String nombre){
         this.nombre=nombre;
     }
@@ -50,5 +61,8 @@ public class Mago { //Clase padre de magos
     }
     public void setEdad(int edad){
         this.edad=edad;
+    }
+    public void setFechaIngreso(String fechaIngreso){
+        this.fechaIngreso=fechaIngreso;
     }
 }

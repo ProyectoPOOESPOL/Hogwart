@@ -5,6 +5,8 @@
  */
 package proyectopoo;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Jhonston
@@ -12,10 +14,15 @@ package proyectopoo;
 public class Animago extends Mago implements Volador{ //Se heredan los atributos y métodos de la clase Mago así como se implementa la interfaz Volador
     private String animal, hechizo;
 
-    public Animago(String nombre, String apellido, String casa, String varita, int edad, String animal, String hechizo) { //Constructor de la clase con parámetros para la clase padre
-        super(nombre, apellido, casa, varita, edad);
-        this.animal=animal;
-        this.hechizo=hechizo;
+    public Animago(String nombre, String apellido, String casa, String varita, int edad,boolean esProfesor) { //Constructor de la clase con parámetros para la clase padre
+        super(nombre, apellido, casa, varita, edad,esProfesor);
+        Scanner sc=new Scanner(System.in);
+        System.out.println("¿En qué clase de animal puede convertirse?: ");
+        animal=sc.nextLine();
+        System.out.println("¿Qué hechizo utiliza?: ");
+        hechizo=sc.nextLine();
+        
+      
     }
 
     @Override

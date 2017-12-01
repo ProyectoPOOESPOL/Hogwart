@@ -10,8 +10,8 @@ import java.util.*;
  * @Tonny
  */
 public class Profesor extends Mago  {
-    public Profesor(String nombre,String apellido,String casa,String varita,int edad,int agnio,int mes ,int dia){
-        super(nombre, apellido, casa, varita, edad);
+    public Profesor(String nombre,String apellido,String casa,String varita,int edad,boolean esProfesor,int agnio,int mes ,int dia){
+        super(nombre, apellido, casa, varita, edad, esProfesor);
         GregorianCalendar fecha=new GregorianCalendar(agnio,mes-1,dia);
         fechaCorrecta=fecha.getTime();
     }

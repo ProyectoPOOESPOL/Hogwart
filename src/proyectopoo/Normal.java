@@ -5,15 +5,19 @@
  */
 package proyectopoo;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Jhonston
  */
 public class Normal extends Mago implements Volador {
     private String deporte;
-    public Normal(String nombre, String apellido, String casa, String varita, int edad, String deporte ) {
-        super(nombre, apellido, casa, varita, edad);
-        this.deporte=deporte;
+    public Normal(String nombre, String apellido, String casa, String varita, int edad,boolean esProfesor ) {
+        super(nombre, apellido, casa, varita, edad,esProfesor);
+        Scanner sc=new Scanner(System.in);
+        System.out.println("¿Qué deporte practica?: ");
+        deporte=sc.nextLine();
     }
     @Override
     public void despegar(){ 
