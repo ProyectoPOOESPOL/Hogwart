@@ -8,29 +8,100 @@ package proyectopoo;
 import java.util.Scanner;
 import java.io.*;
 import java.net.URL;
+import java.util.ArrayList;
 
 /**
  *
  * @author Jhonston
  */
 public class Planificador {
-    private String nombre,apellido,casa,varita,tipoMago,letraTipoMago,animal,hechizo,pocion,deporte;
+    private String nombre,apellido,casa,varita,tipoMago,letraTipoMago;
     private int edad;
+    private int indiceMateria, indiceProfesor,capacidad;
+    private String dia, horario;
+    public ArrayList<String> listaMaterias= new ArrayList<>();
+     public ArrayList<Curso> listaCursos= new ArrayList<>();
+    
     Scanner sc= new Scanner(System.in);
     public Planificador(){
+        //Se agregan materias predefinidas
+        listaMaterias.add("Pociones");
+        listaMaterias.add("Defensas contra las artes oscuras");
+        listaMaterias.add("Adivinación");
+        listaMaterias.add("Astronomía");
+        listaMaterias.add("Historia de la magia");
+        listaMaterias.add("Herbología");
+        listaMaterias.add("Encantamientos");
+        listaMaterias.add("Vuelo");
         nombre="";
         apellido="";
         casa="";
         varita="";
         tipoMago="";
-        animal="";
-        hechizo="";
-        pocion="";
-        deporte="";
         edad=0;
     }
-    public void crearCurso(){
-        
+    public void crearCurso() throws IOException{
+         int eleccion=0,validacion=0;   
+     
+            System.out.println("----------MATERIAS----------");
+            for(int i=0;i<listaMaterias.size();i++){
+                System.out.println((i+1)+".- "+listaMaterias.get(i));
+            }
+            System.out.println("Elija una materia del listado de materias: ");
+            indiceMateria=sc.nextInt();
+            sc.nextLine();
+            System.out.println("----------PROFESORES----------");
+            leerMagos("src/resources/Profesores.txt");//Muestra nombre y apellido de profesores
+            System.out.println("Seleccione un profesor: ");
+            
+            indiceProfesor=sc.nextInt(); 
+            String[] profesor=seleccionMago("src/resources/Profesores.txt",indiceProfesor);
+            
+            System.out.println("Ingrese capacidad del curso: ");
+            capacidad=sc.nextInt(); 
+            sc.nextLine();
+            System.out.println("Ingrese el día: ");
+            dia=sc.nextLine();
+            System.out.println("Ingrese el horario del curso: ");
+            horario=sc.nextLine();
+            System.out.println("¿Desea registrar?\n1.Si\n2.No\nSeleccione: ");
+            validacion=sc.nextInt();
+             int i=0;
+            
+                switch (validacion) {
+                    case 1:
+                        Curso curso= new Curso(listaMaterias.get(indiceMateria),profesor[0]+" "+profesor[1], horario, dia, capacidad);
+                        listaCursos.add(curso);
+                        System.out.println("Registro exitoso");
+                           break;
+                    case 2:
+
+                        System.out.println("Registro no completado, ¿desea realizar otro registro?\n1.Si\n2.No\nSeleccione: ");
+                        int sel=sc.nextInt();
+
+                        i=0;
+                        while(i==0){
+                            switch (sel) {
+                                case 1:
+                                    this.crearCurso();
+                                    i=1;
+                                    break;
+                                case 2:
+                                    //Se regresa al menú principal
+                                    i=1;
+                                    break;
+                                default:
+                                    System.out.println("Seleccion incorrecta\n¿desea realizar otro registro?\n1.Si\n2.No\nSeleccione: ");
+                                    sel=sc.nextInt();
+                                    i=0;
+                                    break;
+                            }
+                        }   break;
+                    default:
+                        break;
+                }
+            
+            
     }
     public void crearProfesor(){
          int eleccion=0,validacion=0;
@@ -208,4 +279,32 @@ public class Planificador {
                 }
         }
     }
+    public void leerMagos(String archivo) throws FileNotFoundException, IOException {
+        String cadena;
+        int contador=1;
+        FileReader f = new FileReader(archivo);
+        BufferedReader b = new BufferedReader(f);
+        while((cadena = b.readLine())!=null) {
+            String[] datos=cadena.split(",");
+            System.out.println(contador+".- "+datos[0].toUpperCase()+" "+datos[1].toUpperCase());
+            contador++;
+        }
+        b.close();
+    }
+    public String[] seleccionMago(String archivo,int posicion) throws FileNotFoundException, IOException {
+           String cadena;
+           String[]datos = null;
+           int contador=1;
+           FileReader f = new FileReader(archivo);
+           BufferedReader b = new BufferedReader(f);
+           while((cadena = b.readLine())!=null) {
+               if(contador==posicion){
+                   datos=cadena.split(",");
+               } 
+               contador++;
+           }
+           b.close();
+           return datos;
+       }
 }
+    

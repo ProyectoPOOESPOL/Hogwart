@@ -5,13 +5,16 @@
  */
 package proyectopoo;
 
+import java.io.IOException;
+
 /*
  *
  * @author Jhonston
  */
 public class Principal {
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException{
         Planificador p= new Planificador();
-        p.crearEstudiante();
+        p.crearProfesor();
+        p.crearCurso();
     }
 }

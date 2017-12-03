@@ -5,13 +5,26 @@
  */
 package proyectopoo;
 
+
+
 /**
  *
  * @author Jhonston
  */
 public class Curso {
     private String materia, profesor, horario, dia;
-    private int capacidad;
+    private int capacidad,registrados;
+  
+   
+    public Curso(String materia, String profesor, String horario, String dia, int capacidad){
+        this.materia=materia;
+        this.profesor=profesor;
+        this.horario=horario;
+        this.dia=dia;
+        this.capacidad=capacidad;
+        this.registrados=registrados;
+    }
+    
     
     // get y set necesarios de la clase
     
@@ -30,6 +43,9 @@ public class Curso {
     public int getCapacidad(){
         return capacidad;
     }
+    public int getRegistrados(){
+        return registrados;
+    }
     public void setMateria(String materia){
         this.materia=materia;
     }
@@ -44,5 +60,12 @@ public class Curso {
     }
     public void setCapacidad(int capacidad){
         this.capacidad=capacidad;
+    }
+    public void setRegistrados(int registrados){
+        this.registrados=registrados;
+    }
+    @Override
+    public String toString(){
+        return("MATERIA: "+materia.toUpperCase()+"\nPROFESOR: "+profesor+"\nCAPACIDAD: "+capacidad+"\nHORARIO: "+horario);
     }
 }

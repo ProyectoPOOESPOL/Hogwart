@@ -1,1 +1,3 @@
-
+pepito,perez,23,cedro,casa,M
+pedro,juan,25,carbon,house,N
+juan,casa,35,lima,loja,A
