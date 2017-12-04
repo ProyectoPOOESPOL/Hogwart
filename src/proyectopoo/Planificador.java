@@ -9,16 +9,18 @@ import java.util.Scanner;
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
  * @author Jhonston
  */
-public class Planificador {
+public class Planificador implements Comparable<Estudiante> {
     private String nombre,apellido,casa,varita,tipoMago,letraTipoMago;
     private int edad;
-    private int indiceMateria, indiceProfesor,capacidad;
+    private int indiceMateria, indiceProfesor,criterio,capacidad;
     private String dia, horario;
+    
     public ArrayList<String> listaMaterias= new ArrayList<>();
      public ArrayList<Curso> listaCursos= new ArrayList<>();
     
@@ -42,7 +44,7 @@ public class Planificador {
     }
     public void crearCurso() throws IOException{
          int eleccion=0,validacion=0;   
-     
+            System.out.println("/******CREAR CURSO******/");
             System.out.println("----------MATERIAS----------");
             for(int i=0;i<listaMaterias.size();i++){
                 System.out.println((i+1)+".- "+listaMaterias.get(i));
@@ -72,8 +74,8 @@ public class Planificador {
                     case 1:
                         Curso curso= new Curso(listaMaterias.get(indiceMateria),profesor[0]+" "+profesor[1], horario, dia, capacidad);
                         listaCursos.add(curso);
-                        System.out.println("Registro exitoso");
-                           break;
+                        System.out.println("Se ha creado el curso: \n"+curso.toString());
+                        break;
                     case 2:
 
                         System.out.println("Registro no completado, ¿desea realizar otro registro?\n1.Si\n2.No\nSeleccione: ");
@@ -105,7 +107,7 @@ public class Planificador {
     }
     public void crearProfesor(){
          int eleccion=0,validacion=0;
-        
+            System.out.println("/******CREAR PROFESOR******/");
             System.out.println("Ingrese Nombre: ");
             nombre=sc.nextLine();
             System.out.println("Ingrese Apellido: ");
@@ -173,7 +175,7 @@ public class Planificador {
     }
     public void crearEstudiante(){
         int eleccion=0,validacion=0;
-        
+            System.out.println("/******CREAR ESTUDIANTE******/");
             System.out.println("Ingrese Nombre: ");
             nombre=sc.nextLine();
             System.out.println("Ingrese Apellido: ");
@@ -240,9 +242,59 @@ public class Planificador {
                 }  
     }
     public void verHorarios(){
-        
+        System.out.println("/******CURSOS PLANIFICADOS******/");  
+        for(int i=0;i<listaMaterias.size();i++){
+            System.out.println((i+1)+".- "+listaMaterias.get(i));
+        }
+        System.out.println("Elija una materia del listado de materias: ");
+        indiceMateria=sc.nextInt();
+        for(int i=0;i<listaCursos.size();i++){
+            if(listaCursos.get(i).getMateria().equals(listaMaterias.get(indiceMateria-1))){
+                System.out.println(listaCursos.get(i).toString()+"\nREGISTRADOS: "+listaCursos.get(i).getRegistrados());
+            }  
+        }
+        System.out.println("¿desea ver otros horarios?\n1.Si\n2.No\nSeleccione: ");
+        int sel=sc.nextInt();
+
+        int i=0;
+        while(i==0){
+            switch (sel) {
+                case 1:
+                    this.verHorarios();
+                    i=1;
+                    break;
+                    case 2:
+                    //Se regresa al menú principal
+                    i=1;
+                    break;
+                    default:
+                    System.out.println("Seleccion incorrecta\n¿desea ver otros horarios?\n1.Si\n2.No\nSeleccione: ");
+                    sel=sc.nextInt();
+                    i=0;
+                    break;
+            }
+        }      
+            
     }
-    public void listadoEstudiantes(){
+    public void listadoEstudiantes() throws FileNotFoundException, IOException{
+        System.out.println("/******LISTADO DE ESTUDIANTES******/");
+        System.out.println("1.-Edad\n2.-Nombre\n3.-Número de materias registradas\nSeleccione el criterio a ordenar: ");
+        criterio=sc.nextInt();
+        sc.nextLine();
+        String cadena;
+        int i=0;
+        String[] datos=null;
+        Estudiante[] estudiantes=null;
+        
+        
+           FileReader f = new FileReader("src/resources/Estudiantes.txt");
+           BufferedReader b = new BufferedReader(f);
+           while((cadena = b.readLine())!=null) {
+                datos=cadena.split(",");
+                estudiantes[i]=new Estudiante(datos[0],datos[1],datos[4],datos[3],datos[5],Integer.parseInt(datos[2]),0);   
+           }
+           b.close();  
+
         
     }
     public void crearMagos(PrintWriter pw,int eleccion,boolean esProfesor){
@@ -255,6 +307,7 @@ public class Planificador {
                 letraTipoMago="A";
                 pw.println(an.getNombre()+","+an.getApellido()+","+an.getEdad()+","+an.getVarita()+","+an.getCasa()+","+letraTipoMago);
                 System.out.println("Registro exitoso");
+                if(esProfesor)
                 i=1;
                 break;
             case 2:
@@ -306,5 +359,15 @@ public class Planificador {
            b.close();
            return datos;
        }
+    @Override
+    public int compareTo(Estudiante e) {
+        if (edad<e.getEdad()) {
+            return -1;
+            }
+        if (edad > e.getEdad()) {
+            return 1;
+            }
+            return 0;
+        }
 }
     

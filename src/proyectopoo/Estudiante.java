@@ -10,16 +10,19 @@ package proyectopoo;
  * @author Jhonston
  */
 public class Estudiante  {
-    private String nombre,apellido,casa,varita,tipoMago,animal,hechizo,pocion,deporte;
-    private int edad;
+
+    private String nombre;
+    private String apellido,casa,varita,tipoMago;
+    private int edad,materiasRegistradas;
     
-    public Estudiante(String nombre,String apellido,String casa,String varita,String tipoMago, int edad){
+    public Estudiante(String nombre,String apellido,String casa,String varita,String tipoMago, int edad,int materiasRegistradas){
         this.nombre=nombre;
         this.apellido=apellido;
         this.casa=casa;
         this.varita=varita;
         this.tipoMago=tipoMago;
         this.edad=edad;
+        this.materiasRegistradas=materiasRegistradas;
     }
     public String getNombre(){
         return nombre;
@@ -56,6 +59,12 @@ public class Estudiante  {
     }
     public void setEdad(int edad){
         this.edad=edad;
+    }
+    public int getMateriasRegistradas(){
+        return materiasRegistradas;
+    }
+    public void setMateriasRegistradas(int materiasRegistradas){
+        this.materiasRegistradas=materiasRegistradas;
     }
     
 }
