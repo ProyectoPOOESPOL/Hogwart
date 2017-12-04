@@ -75,11 +75,32 @@ public class Planificador implements Comparable<Estudiante> {
                         Curso curso= new Curso(listaMaterias.get(indiceMateria),profesor[0]+" "+profesor[1], horario, dia, capacidad);
                         listaCursos.add(curso);
                         System.out.println("Se ha creado el curso: \n"+curso.toString());
-                        break;
+                        System.out.println("¿desea realizar otro registro?\n1.Si\n2.No\nSeleccione: ");
+                        int sel=sc.nextInt();
+
+                        i=0;
+                        while(i==0){
+                            switch (sel) {
+                                case 1:
+                                    this.crearCurso();
+                                    i=1;
+                                    break;
+                                case 2:
+                                    //Se regresa al menú principal
+                                    i=1;
+                                    break;
+                                default:
+                                    System.out.println("Seleccion incorrecta\n¿desea realizar otro registro?\n1.Si\n2.No\nSeleccione: ");
+                                    sel=sc.nextInt();
+                                    i=0;
+                                    break;
+                            }
+                        }   break;
+                    
                     case 2:
 
                         System.out.println("Registro no completado, ¿desea realizar otro registro?\n1.Si\n2.No\nSeleccione: ");
-                        int sel=sc.nextInt();
+                        sel=sc.nextInt();
 
                         i=0;
                         while(i==0){
@@ -135,7 +156,27 @@ public class Planificador implements Comparable<Estudiante> {
                             pw = new PrintWriter(fichero);
 
                             crearMagos(pw,eleccion,true); //Permite instanciar la clase de mago
-                            
+                            System.out.println("¿desea realizar otro registro?\n1.Si\n2.No\nSeleccione: ");
+                        int sel=sc.nextInt();
+
+                        i=0;
+                        while(i==0){
+                            switch (sel) {
+                                case 1:
+                                    this.crearCurso();
+                                    i=1;
+                                    break;
+                                case 2:
+                                    //Se regresa al menú principal
+                                    i=1;
+                                    break;
+                                default:
+                                    System.out.println("Seleccion incorrecta\n¿desea realizar otro registro?\n1.Si\n2.No\nSeleccione: ");
+                                    sel=sc.nextInt();
+                                    i=0;
+                                    break;
+                            }
+                        }   break;
                         } catch (Exception e) {
                             e.printStackTrace();
                         } finally {
@@ -203,7 +244,27 @@ public class Planificador implements Comparable<Estudiante> {
                             pw = new PrintWriter(fichero);
 
                             crearMagos(pw,eleccion,false); //Permite instanciar la clase de mago
-                            
+                            System.out.println("¿desea realizar otro registro?\n1.Si\n2.No\nSeleccione: ");
+                        int sel=sc.nextInt();
+
+                        i=0;
+                        while(i==0){
+                            switch (sel) {
+                                case 1:
+                                    this.crearCurso();
+                                    i=1;
+                                    break;
+                                case 2:
+                                    //Se regresa al menú principal
+                                    i=1;
+                                    break;
+                                default:
+                                    System.out.println("Seleccion incorrecta\n¿desea realizar otro registro?\n1.Si\n2.No\nSeleccione: ");
+                                    sel=sc.nextInt();
+                                    i=0;
+                                    break;
+                            }
+                        }   break;
                         } catch (Exception e) {
                             e.printStackTrace();
                         } finally {
@@ -248,10 +309,15 @@ public class Planificador implements Comparable<Estudiante> {
         }
         System.out.println("Elija una materia del listado de materias: ");
         indiceMateria=sc.nextInt();
+        boolean hayHorarios=false;
         for(int i=0;i<listaCursos.size();i++){
             if(listaCursos.get(i).getMateria().equals(listaMaterias.get(indiceMateria-1))){
                 System.out.println(listaCursos.get(i).toString()+"\nREGISTRADOS: "+listaCursos.get(i).getRegistrados());
+                hayHorarios=true;
             }  
+            if(hayHorarios==false){
+                System.out.println("No hay horarios disponibles para esa materia");
+            }
         }
         System.out.println("¿desea ver otros horarios?\n1.Si\n2.No\nSeleccione: ");
         int sel=sc.nextInt();
